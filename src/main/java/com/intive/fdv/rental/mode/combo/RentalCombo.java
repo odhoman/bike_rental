@@ -3,30 +3,30 @@ package com.intive.fdv.rental.mode.combo;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.intive.fdv.rental.exception.RentalValidationException;
+import com.intive.fdv.rental.exception.validation.ComboValidationManager;
 import com.intive.fdv.rental.exception.validation.MultipleRentalValidationException;
 import com.intive.fdv.rental.mode.Item.RentalItem;
-import com.intive.fdv.rental.mode.combo.validation.RentalComboValidator;
+import com.intive.fdv.rental.mode.combo.concept.ConceptAmountApplyer;
+import com.intive.fdv.rental.mode.combo.concept.RegularConceptApplyer;
+
+/** Rental bikes */
 
 public class RentalCombo {
 
 	private List<RentalItem> rentals = new ArrayList<>();
-	private List<RentalComboValidator> rCVs = new ArrayList<>();
-	private List<ComboConceptAmountApplicable> cCAA = new ArrayList<>();
+	private ComboValidationManager validatorManager;
+	private ConceptAmountApplyer conceptAmountApplyer;
 
-	public RentalCombo(List<RentalComboValidator> rCVs) {
+	public RentalCombo(ComboValidationManager validatorManager) {
 		super();
-		this.rCVs = rCVs;
+		this.validatorManager = validatorManager;
+		this.conceptAmountApplyer = new RegularConceptApplyer(); 
 	}
 
-	public RentalCombo(List<RentalComboValidator> rCVs, List<ComboConceptAmountApplicable> cCAA) {
+	public RentalCombo(ComboValidationManager validatorManager, ConceptAmountApplyer conceptAmountApplyer) {
 		super();
-		this.rCVs = rCVs;
-		this.cCAA = cCAA;
-	}
-
-	public final List<ComboConceptAmountApplicable> getComboConceptsAmountApplicable() {
-		return cCAA;
+		this.validatorManager = validatorManager;
+		this.conceptAmountApplyer = conceptAmountApplyer;
 	}
 
 	public List<RentalItem> getRentals() {
@@ -36,40 +36,30 @@ public class RentalCombo {
 	public void addRental(RentalItem item) {
 		rentals.add(item);
 	}
-
+	
+	/** Returns the total price adding the amounts of each item. */
+	
 	protected Double getTotalPriceRentalItems() {
 		return rentals.stream().mapToDouble(RentalItem::getTotal).sum();
 	}
-
+	
+	/** Return the final price applying differents conceps to the total price */
+	
 	public Double getTotalPrice() {
 		Double totalPrice = getTotalPriceRentalItems();
 		Double aux = getAmountTotalApplicable(totalPrice);
 		return totalPrice - aux;
 	}
-
+	
+	/** Apply differents conceps to the total price */
+	
 	protected Double getAmountTotalApplicable(final Double totalPrice) {
-
-		if (cCAA.isEmpty())
-			return 0D;
-
-		return cCAA.stream().mapToDouble(c -> c.getAmountApplyCombo(totalPrice)).sum();
+		return conceptAmountApplyer.getAmountTotalApplicable(totalPrice);
 	}
-
+	/** Validate the Rental */
+	
 	public void validateCombo() throws MultipleRentalValidationException {
-
-		List<RentalValidationException> validations = new ArrayList<>();
-
-		for (RentalComboValidator rCV : rCVs) {
-			try {
-				rCV.validate(this);
-			} catch (RentalValidationException e) {
-				validations.add(e);
-			}
-		}
-
-		if (!validations.isEmpty())
-			throw new MultipleRentalValidationException("There one or more Rental Combo Validation Exceptions",
-					validations);
+		validatorManager.validateCombo(this);
 	}
 
 }

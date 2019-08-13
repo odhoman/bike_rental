@@ -1,5 +1,7 @@
 package com.intive.fdv.rental.mode.combo;
 
+/** The concept applicable to the total price for a Family Rental */
+
 public class FamilyComboConceptAmountApplicable implements ComboConceptAmountApplicable {
 
 	private final static double FAMILY_RENTAL_PROCENT_DISCOUNT = 30D;

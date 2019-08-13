@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.intive.fdv.rental.exception.RentalValidationException;
 
+/** Exception for multiple validation exceptions */
+
 public class MultipleRentalValidationException extends RentalValidationException{
 
 	private final List<RentalValidationException> exceptions;

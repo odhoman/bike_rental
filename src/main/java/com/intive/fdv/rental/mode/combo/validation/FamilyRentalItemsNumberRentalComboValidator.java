@@ -7,10 +7,7 @@ public class FamilyRentalItemsNumberRentalComboValidator implements RentalComboV
 
 	@Override
 	public void validate(RentalCombo rC) throws RentalValidationException {
-
-		if (!rC.getRentals().isEmpty() && (rC.getRentals().size() < 3 || rC.getRentals().size() > 5))
+		if (rC != null && !rC.getRentals().isEmpty() && (rC.getRentals().size() < 3 || rC.getRentals().size() > 5))
 			throw new RentalValidationException("Family Rental, is a promotion that can include from 3 to 5 Rentals");
-
 	}
-
 }

@@ -1,6 +1,6 @@
 package com.intive.fdv.rental.service.impl;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.intive.fdv.rental.exception.RentalComboNotImplemented;
 import com.intive.fdv.rental.exception.RentalException;
@@ -19,7 +19,7 @@ import com.intive.fdv.rental.mode.combo.RentalCombo;
 import com.intive.fdv.rental.mode.combo.RentalComboEnum;
 import com.intive.fdv.rental.service.RentalService;
 
-@Component("rentalService")
+@Service("rentalService")
 public class RentalServiceImpl implements RentalService {
 
 	@Override

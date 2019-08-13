@@ -1,5 +1,7 @@
 package com.intive.fdv.rental.exception.service;
 
+/** Exception in the service */
+
 public class RentalServiceException extends Exception {
 
 	public RentalServiceException(String message) {

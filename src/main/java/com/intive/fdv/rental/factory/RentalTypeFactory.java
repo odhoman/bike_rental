@@ -6,12 +6,16 @@ import com.intive.fdv.rental.exception.validation.EmptyRentalException;
 import com.intive.fdv.rental.mode.Item.RentalType;
 import com.intive.fdv.rental.mode.Item.RentalTypeEnum;
 
+/** Factory for new rental type */
+
 public class RentalTypeFactory {
 
 	private RentalTypeFactory() {
 		super();
 	}
 
+	/** Return a new rental type  */
+	
 	public static RentalType getRentalType(RentalTypeEnum rTE) throws RentalException {
 
 		if (rTE == null)

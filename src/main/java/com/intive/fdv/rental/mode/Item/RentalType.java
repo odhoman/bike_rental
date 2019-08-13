@@ -1,5 +1,7 @@
 package com.intive.fdv.rental.mode.Item;
 
+/** Contains the name and the charge of type rental */
+
 public class RentalType {
 
 	private String typeName;

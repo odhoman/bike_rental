@@ -2,6 +2,8 @@ package com.intive.fdv.rental.mode.Item;
 
 import com.intive.fdv.rental.mode.bike.BikeEnum;
 
+/** The rental of one bicycle in the final rent */
+
 public class RentalItem {
 
 	private BikeEnum bikeEnum;

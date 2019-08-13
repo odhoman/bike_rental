@@ -20,16 +20,15 @@ import com.intive.fdv.rental.mode.Item.RentalTypeEnum;
 import com.intive.fdv.rental.mode.bike.BikeEnum;
 import com.intive.fdv.rental.mode.combo.RentalCombo;
 import com.intive.fdv.rental.mode.combo.RentalComboEnum;
-import com.intive.fdv.rental.service.impl.RentalServiceImpl;
+
+/** RentalService Unit Test */
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = AppConfig.class)
 public class RentalServiceImplTest {
 
 	@Autowired
-	RentalServiceImpl rentalService;
-
-
+	RentalService rentalService;
 	
 	@Test
 	public void testFamilyRental() {
