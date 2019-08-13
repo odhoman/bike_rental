@@ -1,4 +1,4 @@
-# bike_rental
+# Bike Rental
 
 This code implements differents kind of rental combos: Regular Rental and Family Rental.
 
@@ -95,7 +95,22 @@ First the discount amount is obtained and then the discount is applied to the to
 * Inspection of code quality (SonarLint)
 * Over 85% coverage
 
-## How to run the test
+## Test
+
+### Unit tests
+
+Tests in *RentalServiceImplTest* class
+
+* Family rental Discount Verification
+* Max bikes rental validation in Family rental  
+* Min bikes rental validation in Family rental  
+* Regular rental Verification
+* Null type rental creation validation
+* Not implemented type rental creation validation
+* Null selected  bike rental validation
+* Wrongly selected rental validation 
+
+### How To run the test
 1. Configure Java 8 and maven in your environment.
 2. Go to root project and execute:
 ```bash

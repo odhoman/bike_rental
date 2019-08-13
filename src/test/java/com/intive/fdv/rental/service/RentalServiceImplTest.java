@@ -30,6 +30,8 @@ public class RentalServiceImplTest {
 	@Autowired
 	RentalService rentalService;
 	
+	/** Family rental Discount Verification */
+	
 	@Test
 	public void testFamilyRental() {
 		try {
@@ -53,6 +55,8 @@ public class RentalServiceImplTest {
 		}
 	}
 
+	/** Max bikes rental validation in Family rental   */
+	
 	@Test(expected = RentalServiceValidationException.class)
 	public void testFamilyRentalMaxItemsValidation() throws RentalServiceValidationException {
 		try {
@@ -80,6 +84,8 @@ public class RentalServiceImplTest {
 		fail("Exception Expected");
 	}
 
+	/** Min bikes rental validation in Family rental */
+	
 	@Test(expected = RentalServiceValidationException.class)
 	public void testFamilyRentalMinItemsValidation() throws RentalServiceValidationException {
 		try {
@@ -102,6 +108,8 @@ public class RentalServiceImplTest {
 		fail("Exception Expected");
 	}
 
+	/** Regular rental Verification */
+	
 	@Test
 	public void testRegularRental() {
 		try {
@@ -125,6 +133,8 @@ public class RentalServiceImplTest {
 		}
 	}
 	
+	/** Null type rental creation validation */
+	
 	@Test(expected = WrongRentalTypeSelectedServiceException.class)
 	public void testCreateNullRentalTypeError() throws WrongRentalTypeSelectedServiceException {
 		try {
@@ -135,6 +145,8 @@ public class RentalServiceImplTest {
 			fail("Unexpected Exception");
 		}
 	}
+	
+	/** Not implemented type rental creation validation */
 	
 	@Test(expected = WrongRentalTypeSelectedServiceException.class)
 	public void testCreateNotImplementedRentalTypeError() throws WrongRentalTypeSelectedServiceException {
@@ -147,6 +159,8 @@ public class RentalServiceImplTest {
 		}
 	}
 	
+	/** Null selected  bike rental validation  */
+	
 	@Test(expected = WrongComboSelectedServiceException.class)
 	public void testCreateNullRentalComboError() throws WrongComboSelectedServiceException {
 		try {
@@ -157,6 +171,8 @@ public class RentalServiceImplTest {
 			fail("Unexpected Exception");
 		}
 	}
+	
+	/** Wrong bike rental selected validation */ 
 	
 	@Test(expected = WrongComboSelectedServiceException.class)
 	public void testCreateNotImplementedRentalComboError() throws WrongComboSelectedServiceException {
