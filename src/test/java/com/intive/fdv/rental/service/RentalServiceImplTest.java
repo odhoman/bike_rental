@@ -53,8 +53,8 @@ public class RentalServiceImplTest {
 		}
 	}
 
-	@Test
-	public void testFamilyRentalMaxItemsValidation() {
+	@Test(expected = RentalServiceValidationException.class)
+	public void testFamilyRentalMaxItemsValidation() throws RentalServiceValidationException {
 		try {
 			RentalCombo rentalCombo = rentalService.createNewRentalCombo(RentalComboEnum.FAMILY_COMBO_RENTAL);
 			RentalType rentalTypeHours = rentalService.createRentalType(RentalTypeEnum.RENTAL_BY_HOURS); // $5
@@ -73,16 +73,15 @@ public class RentalServiceImplTest {
 			rentalService.validateRentalCombo(rentalCombo);
 
 		} catch (RentalServiceValidationException e) {
-			return;
+			throw e;
 		} catch (RentalServiceException e) {
 			fail("Unexpected Exception");
 		}
-
 		fail("Exception Expected");
 	}
 
-	@Test
-	public void testFamilyRentalMinItemsValidation() {
+	@Test(expected = RentalServiceValidationException.class)
+	public void testFamilyRentalMinItemsValidation() throws RentalServiceValidationException {
 		try {
 			RentalCombo rentalCombo = rentalService.createNewRentalCombo(RentalComboEnum.FAMILY_COMBO_RENTAL);
 			RentalType rentalTypeHours = rentalService.createRentalType(RentalTypeEnum.RENTAL_BY_HOURS); // $5
@@ -96,11 +95,10 @@ public class RentalServiceImplTest {
 			rentalService.validateRentalCombo(rentalCombo);
 
 		} catch (RentalServiceValidationException e) {
-			return;
+			throw e;
 		} catch (RentalServiceException e) {
 			fail("Unexpected Exception");
 		}
-
 		fail("Exception Expected");
 	}
 
@@ -127,45 +125,45 @@ public class RentalServiceImplTest {
 		}
 	}
 	
-	@Test
-	public void testCreateNullRentalTypeError() {
+	@Test(expected = WrongRentalTypeSelectedServiceException.class)
+	public void testCreateNullRentalTypeError() throws WrongRentalTypeSelectedServiceException {
 		try {
 			rentalService.createRentalType(null);
 		} catch (WrongRentalTypeSelectedServiceException e) {
-			return;
+			throw e;
 		}catch (RentalServiceException e) {
 			fail("Unexpected Exception");
 		}
 	}
 	
-	@Test
-	public void testCreateNotImplementedRentalTypeError() {
+	@Test(expected = WrongRentalTypeSelectedServiceException.class)
+	public void testCreateNotImplementedRentalTypeError() throws WrongRentalTypeSelectedServiceException {
 		try {
 			rentalService.createRentalType(RentalTypeEnum.RENTAL_NOT_IMPLEMENTED);
 		} catch (WrongRentalTypeSelectedServiceException e) {
-			return;
+			throw e;
 		}catch (RentalServiceException e) {
 			fail("Unexpected Exception");
 		}
 	}
 	
-	@Test
-	public void testCreateNullRentalComboError() {
+	@Test(expected = WrongComboSelectedServiceException.class)
+	public void testCreateNullRentalComboError() throws WrongComboSelectedServiceException {
 		try {
 			rentalService.createNewRentalCombo(null);
 		} catch (WrongComboSelectedServiceException e) {
-			return;
+			throw e;
 		}catch (RentalServiceException e) {
 			fail("Unexpected Exception");
 		}
 	}
 	
-	@Test
-	public void testCreateNotImplementedRentalComboError() {
+	@Test(expected = WrongComboSelectedServiceException.class)
+	public void testCreateNotImplementedRentalComboError() throws WrongComboSelectedServiceException {
 		try {
 			rentalService.createNewRentalCombo(RentalComboEnum.NOT_IMPLEMENTED_COMBO_RENTAL);
 		} catch (WrongComboSelectedServiceException e) {
-			return;
+			throw e;
 		}catch (RentalServiceException e) {
 			fail("Unexpected Exception");
 		}
